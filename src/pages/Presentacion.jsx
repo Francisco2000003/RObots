@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import robotsLogo from "../assets/logo.jpg";
+import { motion } from "framer-motion";
 
 export default function Presentacion() {
   const year = new Date().getFullYear();
@@ -204,7 +205,7 @@ export default function Presentacion() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2 text-sm font-semibold text-neutral-900 shadow-lg shadow-amber-500/20 hover:brightness-110"
               >
-                <WhatsAppIcon className="h-4 w-4" />
+                <img className="h-6 w-6" src="/whatsapp.svg" alt="" />
                 Solicitar demo
               </a>
             </div>
@@ -216,7 +217,7 @@ export default function Presentacion() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-20 pt-14 md:grid-cols-2 md:pt-24">
           <div>
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
-              <SparklesIcon className="h-3.5 w-3.5" />
+              <img className="h-5 w-5" src="/shine.svg" alt="" />
               Ya operando en agencias automotrices
             </p>
             <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl">
@@ -238,7 +239,7 @@ export default function Presentacion() {
                 "Centralizar toda la información en un solo lugar.",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <CheckIcon className="mt-1 h-5 w-5 flex-none" />
+                  <img className="h-5 w-5" src="/check.svg" alt="" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -302,16 +303,18 @@ export default function Presentacion() {
 
       <section id="beneficios" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-2xl font-bold md:text-3xl">Beneficios clave</h2>
-          <p className="mt-2 max-w-2xl text-white/70">
+          <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
+            Beneficios clave
+          </Reveal>
+          <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
             Ahorra tiempo, reduce costos y brinda una experiencia consistente a cada cliente.
-          </p>
+          </Reveal>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <FeatureCard title="Atención 24/7" desc="Nunca pierdas oportunidades por fuera de horario." icon={<ClockIcon className="h-5 w-5" />} />
-            <FeatureCard title="Agenda automática" desc="Reservas y recordatorios sin intervención humana." icon={<CalendarIcon className="h-5 w-5" />} />
-            <FeatureCard title="Promos al instante" desc="Comparte menús, planes, catálogos y PDFs." icon={<BoltIcon className="h-5 w-5" />} />
-            <FeatureCard title="Datos centralizados" desc="Todo en un solo lugar: clientes, citas y pedidos." icon={<DatabaseIcon className="h-5 w-5" />} />
+            <FeatureCard title="Atención 24/7" desc="Nunca pierdas oportunidades por fuera de horario." icon={<img className="h-6 w-6" src="/clock.svg" alt="" />} />
+            <FeatureCard title="Agenda automática" desc="Reservas y recordatorios sin intervención humana." icon={<img className="h-6 w-6" src="/calendar.svg" alt="" />} />
+            <FeatureCard title="Promos al instante" desc="Comparte menús, planes, catálogos y PDFs." icon={<img className="h-6 w-6" src="/thunderWhite.svg" alt="" />} />
+            <FeatureCard title="Datos centralizados" desc="Todo en un solo lugar: clientes, citas y pedidos." icon={<img className="h-6 w-6" src="/database.svg" alt="" />} />
           </div>
         </div>
       </section>
@@ -341,7 +344,7 @@ export default function Presentacion() {
                 <h3 className="text-lg font-semibold">{c.title}</h3>
                 <ul className="mt-3 space-y-1 text-white/80 text-sm">
                   {c.items.map((i) => (
-                    <li key={i} className="flex items-center gap-2"><CheckIcon className="h-4 w-4" /> {i}</li>
+                    <li key={i} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" /> {i}</li>
                   ))}
                 </ul>
               </div>
@@ -374,16 +377,16 @@ export default function Presentacion() {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <IntegrationCard title="WhatsApp" desc="Atiende y automatiza donde están tus clientes.">
-              <WhatsAppIcon className="h-6 w-6" />
+              <img className="h-6 w-6" src="/whatsappColor.svg" alt="" />
             </IntegrationCard>
             <IntegrationCard title="Google Sheets" desc="Registra clientes, citas, pedidos y reportes.">
-              <SheetsIcon className="h-6 w-6" />
+              <img className="h-6 w-6" src="/sheets.svg" alt="" />
             </IntegrationCard>
             <IntegrationCard title="Google Drive" desc="Comparte catálogos y PDFs en segundos.">
-              <DriveIcon className="h-6 w-6" />
+              <img className="h-6 w-6" src="/drive.svg" alt="" />
             </IntegrationCard>
-            <IntegrationCard title="Zapier / Webhooks" desc="Conecta con tu CRM, ERP o sistema propio.">
-              <ZapIcon className="h-6 w-6" />
+            <IntegrationCard title="Webhooks" desc="Conecta con tu CRM, ERP o sistema propio.">
+              <img className="h-6 w-6" src="/thunder.svg" alt="" />
             </IntegrationCard>
           </div>
         </div>
@@ -506,7 +509,7 @@ export default function Presentacion() {
                 rel="noreferrer"
                 className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-900 shadow hover:brightness-110"
               >
-                <WhatsAppIcon className="h-4 w-4" />
+                <img className="h-5 w-5" src="/whatsapp.svg" alt="" />
                 Chatear ahora
               </a>
             </div>
@@ -514,7 +517,6 @@ export default function Presentacion() {
         </div>
       </section>
 
-      {/* Footer con redes */}
       <footer className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-10 text-sm text-white/70">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
@@ -525,28 +527,24 @@ export default function Presentacion() {
               <a href="#" className="hover:text-white">Contacto</a>
             </div>
             <div className="flex items-center gap-3">
-              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.png" alt="" /></a>
-              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.png" alt="" /></a>
-              <a href="https://www.instagram.com/reyvallejo003/" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.png" alt="" /></a>
-              <a href="https://www.instagram.com/waldopenaa/" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.png" alt="" /></a>
-              <a href="https://github.com/Francisco2000003" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.png" alt="" /></a>
-              <a href="https://github.com/Reynaldo003" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.png" alt="" /></a>
+              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
+              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
+              <a href="https://www.instagram.com/waldopenaa/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
+              <a href="https://www.instagram.com/reyvallejo003/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
+              <a href="https://github.com/Reynaldo003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
+              <a href="https://github.com/Francisco2000003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* CTA flotante WhatsApp (más arriba) */}
-      <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`}
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-20 right-4 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3 font-semibold text-neutral-950 shadow-xl transition hover:brightness-110"
-      >
-        <WhatsAppIcon className="h-5 w-5" />
+      <a className="fixed bottom-20 right-4 mb-10 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3
+  font-semibold text-neutral-950 shadow-xl hover:brightness-110
+  [animation:pulse-soft_3.5s_ease-in-out_infinite]">
+        <img className="h-5 w-5" src="/whatsapp.svg" alt="" />
         Contacto
       </a>
-    </div>
+    </div >
   );
 }
 
@@ -613,7 +611,7 @@ function CaseCard({ title, lines, emoji }) {
       <h3 className="text-lg font-semibold">{title}</h3>
       <ul className="mt-2 space-y-1 text-white/80 text-sm">
         {lines.map((l) => (
-          <li key={l} className="flex items-center gap-2"><CheckIcon className="h-4 w-4" /> {l}</li>
+          <li key={l} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" /> {l}</li>
         ))}
       </ul>
     </div>
@@ -639,7 +637,7 @@ function PriceCard({ tier, price, period, bullets, highlight }) {
       </div>
       <ul className="mt-4 space-y-1 text-white/80 text-sm">
         {bullets.map((b) => (
-          <li key={b} className="flex items-center gap-2"><CheckIcon className="h-4 w-4" /> {b}</li>
+          <li key={b} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" /> {b}</li>
         ))}
       </ul>
       <a
@@ -657,7 +655,7 @@ function Faq({ q, a }) {
     <details className="group rounded-2xl border border-white/10 bg-neutral-900/40 p-4">
       <summary className="cursor-pointer list-none text-base font-semibold">
         <span className="inline-flex items-center gap-2">
-          <QuestionIcon className="h-5 w-5" />
+          <img className="h-5 w-5" src="/question.svg" alt="" />
           {q}
         </span>
       </summary>
@@ -666,104 +664,17 @@ function Faq({ q, a }) {
   );
 }
 
-/* -------------------- Inline icons (SVG) -------------------- */
-function WhatsAppIcon({ className = "h-5 w-5" }) {
+function Reveal({ children, delay = 0, y = 16, as = "div", className = "" }) {
+  const Tag = motion[as] || motion.div;
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M20 3.9A10 10 0 0 0 3.6 17.4L3 21l3.7-.6A10 10 0 1 0 20 3.9Zm-8 16.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-2.4.4.5-2.3-.2-.3A8.1 8.1 0 1 1 12 20Zm4.4-6.1c-.2-.1-1.3-.6-1.5-.6s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5s0-.4 0-.5c0-.1-.5-1.3-.7-1.8-.2-.4-.4-.3-.5-.3h-.5c-.2 0-.5.1-.7.3l-.3.5c-.2.4-.5 1 .6 2.6A12.5 12.5 0 0 0 10 14c1.4 1.1 2.7 1.4 3.6 1.6h.8c.3 0 1-.4 1.1-.8.2-.4.2-.8.1-.9 0-.1-.2-.1-.2-.1Z" />
-    </svg>
-  );
-}
-function SheetsIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm4 18H6V4h7v5h5v11ZM8 12h8v2H8v-2Zm0 4h8v2H8v-2Z" />
-    </svg>
-  );
-}
-function DriveIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M7.5 3 2 12l5.5 9H22L16.5 12 22 3H7.5Zm1.7 3h4.9l4.2 6.9H13.4L9.2 6ZM5.4 12l3.1-5.1 4.2 6.9-3.1 5.2L5.4 12Zm9.2 7-3.1-5.1h8.3L20.9 19h-6.3Z" />
-    </svg>
-  );
-}
-function ZapIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M13 2 3 14h7l-1 8 11-12h-7l1-8Z" />
-    </svg>
-  );
-}
-function CheckIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z" />
-    </svg>
-  );
-}
-function SparklesIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M11 2 9 8l-6 2 6 2 2 6 2-6 6-2-6-2-2-6Zm8 6-1 3-3 1 3 1 1 3 1-3 3-1-3-1-1-3Z" />
-    </svg>
-  );
-}
-function ClockIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 11h5v-2h-4V6h-2v7Z" />
-    </svg>
-  );
-}
-function CalendarIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10Z" />
-    </svg>
-  );
-}
-function BoltIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M11 21h-1l1-7H7l6-11h1l-1 7h4l-6 11Z" />
-    </svg>
-  );
-}
-function DatabaseIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M12 2C7 2 3 3.8 3 6v12c0 2.2 4 4 9 4s9-1.8 9-4V6c0-2.2-4-4-9-4Zm0 2c4.4 0 7 .9 7 2s-2.6 2-7 2-7-.9-7-2 2.6-2 7-2Zm0 16c-4.4 0-7-.9-7-2v-2c1.7 1 4.2 1.5 7 1.5s5.3-.5 7-1.5v2c0 1.1-2.6 2-7 2Zm0-6c-4.4 0-7-.9-7-2V8c1.7 1 4.2 1.5 7 1.5S17.3 9 19 8v2c0 1.1-2.6 2-7 2Z" />
-    </svg>
-  );
-}
-function QuestionIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm2.1-6.9-.6.5c-.8.7-1.5 1.3-1.5 2.4v.5h-2v-.7c0-1.4.9-2.3 1.7-3l.6-.5c.4-.3.7-.7.7-1.3 0-.9-.8-1.7-1.8-1.7-1 0-1.8.8-1.8 1.8H7.8c0-2.1 1.7-3.8 3.9-3.8s3.9 1.7 3.9 3.8c0 .9-.4 1.7-1.3 2.4Z" />
-    </svg>
-  );
-}
-
-/* Redes (SVG) */
-function InstagramIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 .001 10.001A5 5 0 0 0 12 7Zm0 2a3 3 0 1 1-.001 6.001A3 3 0 0 1 12 9Zm6.5-2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
-    </svg>
-  );
-}
-function LinkedInIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.7v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.8 2.6 4.8 6v6h-4v-5.3c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21h-4V9Z" />
-    </svg>
-  );
-}
-function GithubIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.8-1.4-3.8-1.4-.6-1.4-1.4-1.7-1.4-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.9-.8 1.8-1.2-2.5-.3-5-1.3-5-5.7 0-1.3.5-2.5 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.6 11.6 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.8 1.1 2 1.1 3.3 0 4.4-2.6 5.4-5.1 5.7 1 .8 1 2.2 1 3.2v3.2c0 .4.2.8.8.6A11.5 11.5 0 1 0 12 .5Z" />
-    </svg>
+    <Tag
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      viewport={{ once: true, amount: 0.2 }}
+      className={className}
+    >
+      {children}
+    </Tag>
   );
 }
