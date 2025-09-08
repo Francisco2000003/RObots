@@ -525,7 +525,8 @@ export default function Presentacion() {
               <a href="#" className="hover:text-white">Contacto</a>
             </div>
             <div className="flex items-center gap-3">
-              {/* Reemplaza los href con los perfiles reales de los devs */}
+              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.png" alt="" /></a>
+              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.png" alt="" /></a>
               <a href="https://www.instagram.com/reyvallejo003/" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.png" alt="" /></a>
               <a href="https://www.instagram.com/waldopenaa/" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.png" alt="" /></a>
               <a href="https://github.com/Francisco2000003" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.png" alt="" /></a>
