@@ -220,7 +220,7 @@ export default function Presentacion() {
               Ya operando en agencias automotrices
             </p>
             <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl">
-              Chatbot de WhatsApp que{" "}
+              Chatbot para WhatsApp que{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">
                 atiende por ti
               </span>{" "}
@@ -411,8 +411,8 @@ export default function Presentacion() {
                 key={key}
                 onClick={() => setSector(key)}
                 className={`rounded-xl px-3 py-2 text-sm font-semibold border ${sector === key
-                    ? "bg-amber-500 text-neutral-900 border-amber-400"
-                    : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
+                  ? "bg-amber-500 text-neutral-900 border-amber-400"
+                  : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
                   }`}
               >
                 {label}
@@ -526,10 +526,10 @@ export default function Presentacion() {
             </div>
             <div className="flex items-center gap-3">
               {/* Reemplaza los href con los perfiles reales de los devs */}
-              <a href="https://www.instagram.com/reyvallejo003/" aria-label="Instagram" className="hover:text-white"><InstagramIcon className="h-5 w-5" /></a>
-              <a href="https://www.instagram.com/waldopenaa/" aria-label="Instagram" className="hover:text-white"><InstagramIcon className="h-5 w-5" /></a>
-              <a href="https://github.com/Francisco2000003" aria-label="GitHub" className="hover:text-white"><GithubIcon className="h-5 w-5" /></a>
-              <a href="https://github.com/Reynaldo003" aria-label="GitHub" className="hover:text-white"><GithubIcon className="h-5 w-5" /></a>
+              <a href="https://www.instagram.com/reyvallejo003/" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.png" alt="" /></a>
+              <a href="https://www.instagram.com/waldopenaa/" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.png" alt="" /></a>
+              <a href="https://github.com/Francisco2000003" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.png" alt="" /></a>
+              <a href="https://github.com/Reynaldo003" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.png" alt="" /></a>
             </div>
           </div>
         </div>
@@ -623,8 +623,8 @@ function PriceCard({ tier, price, period, bullets, highlight }) {
   return (
     <div
       className={`relative rounded-2xl border p-5 ${highlight
-          ? "border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-amber-400/10"
-          : "border-white/10 bg-neutral-900/40"
+        ? "border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-amber-400/10"
+        : "border-white/10 bg-neutral-900/40"
         }`}
     >
       {highlight && (
@@ -763,20 +763,6 @@ function GithubIcon({ className = "h-5 w-5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.8-1.4-3.8-1.4-.6-1.4-1.4-1.7-1.4-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.9-.8 1.8-1.2-2.5-.3-5-1.3-5-5.7 0-1.3.5-2.5 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.6 11.6 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.8 1.1 2 1.1 3.3 0 4.4-2.6 5.4-5.1 5.7 1 .8 1 2.2 1 3.2v3.2c0 .4.2.8.8.6A11.5 11.5 0 1 0 12 .5Z" />
-    </svg>
-  );
-}
-function YouTubeIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M23.5 7.5a4 4 0 0 0-2.8-2.8C18.7 4 12 4 12 4s-6.7 0-8.7.7A4 4 0 0 0 .5 7.5 41.6 41.6 0 0 0 0 12a41.6 41.6 0 0 0 .5 4.5 4 4 0 0 0 2.8 2.8C5.3 20 12 20 12 20s6.7 0 8.7-.7a4 4 0 0 0 2.8-2.8c.3-1.5.5-3 .5-4.5s-.2-3-.5-4.5ZM9.5 15.5v-7l6 3.5-6 3.5Z" />
-    </svg>
-  );
-}
-function XIcon({ className = "h-5 w-5" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M14.7 10.5 22 2h-2.1l-6.2 7.1L9 2H2l7.8 11.2L2 22h2.1l6.6-7.5L15 22h7l-7.3-11.5Zm-3 3.3L4.4 3.5H7L18 20.5h-2.6l-3.7-6.7Z" />
     </svg>
   );
 }
