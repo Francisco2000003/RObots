@@ -220,7 +220,7 @@ export default function Presentacion() {
               Ya operando en agencias automotrices
             </p>
             <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl">
-              Chatbot para WhatsApp que{" "}
+              Chatbot de WhatsApp que{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">
                 atiende por ti
               </span>{" "}
@@ -410,11 +410,10 @@ export default function Presentacion() {
               <button
                 key={key}
                 onClick={() => setSector(key)}
-                className={`rounded-xl px-3 py-2 text-sm font-semibold border ${
-                  sector === key
+                className={`rounded-xl px-3 py-2 text-sm font-semibold border ${sector === key
                     ? "bg-amber-500 text-neutral-900 border-amber-400"
                     : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
-                }`}
+                  }`}
               >
                 {label}
               </button>
@@ -623,11 +622,10 @@ function CaseCard({ title, lines, emoji }) {
 function PriceCard({ tier, price, period, bullets, highlight }) {
   return (
     <div
-      className={`relative rounded-2xl border p-5 ${
-        highlight
+      className={`relative rounded-2xl border p-5 ${highlight
           ? "border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-amber-400/10"
           : "border-white/10 bg-neutral-900/40"
-      }`}
+        }`}
     >
       {highlight && (
         <div className="absolute -top-3 left-5 rounded-full bg-gradient-to-r from-amber-600 to-amber-400 px-3 py-1 text-xs font-semibold text-neutral-900 shadow">
