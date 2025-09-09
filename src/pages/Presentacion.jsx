@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import robotsLogo from "../assets/logo.jpg";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+
 
 export default function Presentacion() {
   const year = new Date().getFullYear();
@@ -9,7 +10,6 @@ export default function Presentacion() {
 
   const [sector, setSector] = useState("consultorios");
   const [customRole, setCustomRole] = useState("");
-
   const planes = {
     consultorios: [
       {
@@ -260,46 +260,49 @@ export default function Presentacion() {
               </a>
             </div>
           </div>
-
-          <div className="md:justify-self-end">
-            <div className="mx-auto w-full max-w-md rounded-3xl border border-white/10 bg-neutral-900/60 p-4 shadow-2xl backdrop-blur">
-              <div className="mb-3 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-2xl bg-amber-400/20 grid place-items-center overflow-hidden">
-                    <img src={robotsLogo} alt="RObots" className="h-7 w-7 object-contain" />
+          <HeroChat>
+            <div className="md:justify-self-end">
+              <div className="mx-auto w-full max-w-md rounded-3xl border border-white/10 bg-neutral-900/60 p-4 shadow-2xl backdrop-blur">
+                <div className="mb-3 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-2xl bg-amber-400/20 grid place-items-center overflow-hidden">
+                      <img src={robotsLogo} alt="RObots" className="h-7 w-7 object-contain" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">RObots Asistente</p>
+                      <p className="text-xs text-white/60">en línea • WhatsApp</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold">RObots Asistente</p>
-                    <p className="text-xs text-white/60">en línea • WhatsApp</p>
+                  <div className="flex gap-2">
+                    <div className="h-2 w-2 rounded-full bg-emerald-400" />
+                    <div className="h-2 w-2 rounded-full bg-amber-400" />
+                    <div className="h-2 w-2 rounded-full bg-rose-400" />
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <div className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <div className="h-2 w-2 rounded-full bg-amber-400" />
-                  <div className="h-2 w-2 rounded-full bg-rose-400" />
-                </div>
-              </div>
 
-              <div className="space-y-3">
-                <ChatBubble side="left" text="¡Hola! 👋 Soy el asistente de RObots. ¿En qué negocio quieres automatizar la atención?" />
-                <ChatBubble side="right" text="Restaurante" />
-                <ChatBubble side="left" text="Perfecto 🍽️ Puedo tomar reservaciones, enviar menús y confirmar asistencia sin intervención humana." />
-                <ChatBubble side="right" text="¿Se integra con Google Sheets?" />
-                <ChatBubble side="left" text="Sí. Guardamos clientes, citas y pedidos en Sheets y otros formatos en tiempo real." />
-              </div>
-
-              <div className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-neutral-800 px-3 py-2 text-sm text-white/60">
-                <div className="flex -space-x-1">
-                  <Dot />
-                  <Dot />
-                  <Dot />
+                <div className="space-y-3">
+                  <ChatBubble side="left" text="¡Hola! 👋 Soy el asistente de RObots. ¿En qué negocio quieres automatizar la atención?" />
+                  <ChatBubble side="right" text="Restaurante" />
+                  <ChatBubble side="left" text="Perfecto 🍽️ Puedo tomar reservaciones, enviar menús y confirmar asistencia sin intervención humana." />
+                  <ChatBubble side="right" text="¿Se integra con Google Sheets?" />
+                  <ChatBubble side="left" text="Sí. Guardamos clientes, citas y pedidos en Sheets y otros formatos en tiempo real." />
                 </div>
-                Generando respuesta…
+
+                <div className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-neutral-800 px-3 py-2 text-sm text-white/60">
+                  <div className="flex -space-x-1">
+                    <Dot />
+                    <Dot />
+                    <Dot />
+                  </div>
+                  Generando respuesta…
+                </div>
               </div>
             </div>
-          </div>
+
+          </HeroChat>
         </div>
       </section>
+
 
       <section id="beneficios" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
@@ -323,14 +326,17 @@ export default function Presentacion() {
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold md:text-3xl">Funciona para distintos giros</h2>
-              <p className="mt-2 text-white/70">Personalizamos flujos para tu operativa actual.</p>
+              <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
+                Funciona para distintos giros
+              </Reveal>
+              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
+                Personalizamos flujos para tu operativa actual.
+              </Reveal>
             </div>
             <a href="#contacto" className="hidden md:inline rounded-xl border border-white/15 px-4 py-2 text-sm text-white/90 hover:bg-white/5">
               Solicitar casos de uso
             </a>
           </div>
-
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { title: "Restaurantes", items: ["Reservas", "Menús", "Confirmaciones"] },
@@ -356,7 +362,9 @@ export default function Presentacion() {
       {/* Cómo funciona */}
       <section id="funciona" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-2xl font-bold md:text-3xl">Cómo funciona</h2>
+          <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
+            Cómo funciona
+          </Reveal>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Step n={1} title="Diagnóstico" desc="Entendemos tu proceso actual y definimos objetivos claros." />
             <Step n={2} title="Implementación" desc="Conectamos WhatsApp con Sheets/archivos y adaptamos los flujos." />
@@ -370,8 +378,12 @@ export default function Presentacion() {
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold md:text-3xl">Integraciones nativas</h2>
-              <p className="mt-2 text-white/70">Conectamos con tus herramientas de todos los días.</p>
+              <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
+                Integraciones nativas
+              </Reveal>
+              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
+                Conectamos con tus herramientas de todos los días.
+              </Reveal>
             </div>
           </div>
 
@@ -397,8 +409,12 @@ export default function Presentacion() {
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold md:text-3xl">Planes por giro</h2>
-              <p className="mt-2 text-white/70">Precios en MXN (referencia). Ajustamos según complejidad y volumen.</p>
+              <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
+                Planes por giro
+              </Reveal>
+              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
+                Precios en MXN. Ajustamos según complejidad y volumen.
+              </Reveal>
             </div>
           </div>
 
@@ -425,16 +441,19 @@ export default function Presentacion() {
 
           {/* Grid de planes del sector activo */}
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {planes[sector].map((p) => (
-              <PriceCard
-                key={p.tier}
-                tier={p.tier}
-                price={p.price}
-                period={p.period}
-                bullets={p.bullets}
-                highlight={p.highlight}
-              />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {planes[sector].map((p) => (
+                <motion.div
+                  key={`${sector}-${p.tier}`}
+                  initial={{ opacity: 0, y: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -12, scale: 0.98 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                >
+                  <PriceCard {...p} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
           {/* Otro giro */}
@@ -474,7 +493,9 @@ export default function Presentacion() {
       {/* FAQ */}
       <section id="faq" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-2xl font-bold md:text-3xl">Preguntas frecuentes</h2>
+          <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
+            Preguntas frecuentes
+          </Reveal>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             <Faq q="¿Necesito cambiar mis herramientas actuales?" a="No. Nos integramos a tus flujos existentes (Sheets, Drive o tu CRM vía webhooks)." />
             <Faq q="¿Cuánto tarda la implementación?" a="Depende del alcance. Un flujo base suele estar listo en pocos días una vez recibimos la información." />
@@ -526,28 +547,46 @@ export default function Presentacion() {
               <a href="#" className="hover:text-white">FAQ</a>
               <a href="#" className="hover:text-white">Contacto</a>
             </div>
+
             <div className="flex items-center gap-3">
-              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
-              <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
-              <a href="https://www.instagram.com/waldopenaa/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
-              <a href="https://www.instagram.com/reyvallejo003/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
-              <a href="https://github.com/Reynaldo003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
-              <a href="https://github.com/Francisco2000003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
+              <SvgHover>
+                <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
+              </SvgHover>
+
+              <SvgHover>
+                <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
+              </SvgHover>
+
+              <SvgHover>
+                <a href="https://www.instagram.com/waldopenaa/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
+              </SvgHover>
+
+              <SvgHover>
+                <a href="https://www.instagram.com/reyvallejo003/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
+              </SvgHover>
+              <SvgHover>
+                <a href="https://github.com/Reynaldo003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
+              </SvgHover>
+
+              <SvgHover>
+                <a href="https://github.com/Francisco2000003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
+              </SvgHover>
             </div>
           </div>
         </div>
       </footer>
 
-      <a className="fixed bottom-20 right-4 mb-10 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3
-  font-semibold text-neutral-950 shadow-xl hover:brightness-110
-  [animation:pulse-soft_3.5s_ease-in-out_infinite]">
+      <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`}
+        target="_blank"
+        rel="noreferrer" className="fixed bottom-20 right-4 mb-10 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3
+        font-semibold text-neutral-950 shadow-xl hover:brightness-110
+        [animation:pulse-soft_3.5s_ease-in-out_infinite]">
         <img className="h-5 w-5" src="/whatsapp.svg" alt="" />
         Contacto
       </a>
     </div >
   );
 }
-
 /* -------------------- UI atoms -------------------- */
 function ChatBubble({ side = "left", text }) {
   const isLeft = side === "left";
@@ -567,65 +606,59 @@ function ChatBubble({ side = "left", text }) {
 function Dot() {
   return <div className="h-2 w-2 animate-bounce rounded-full bg-white/40 [animation-delay:0.15s]" />;
 }
-
 function FeatureCard({ icon, title, desc }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
+    <Card>
       <div className="mb-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/80">
-        {icon}
-        {title}
+        {icon}{title}
       </div>
       <p className="text-white/80">{desc}</p>
-    </div>
-  );
-}
-
-function Step({ n, title, desc }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
-      <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
-        Paso {n}
-      </div>
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <p className="mt-1 text-white/80">{desc}</p>
-    </div>
+    </Card>
   );
 }
 
 function IntegrationCard({ title, desc, children }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
+    <Card>
       <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
-        {children}
-        {title}
+        {children}{title}
       </div>
       <p className="text-white/80">{desc}</p>
-    </div>
+    </Card>
+  );
+}
+
+function Step({ n, title, desc }) {
+  return (
+    <Card>
+      <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
+        Paso {n}
+      </div>
+      <h3 className="text-lg font-semibold">{title}</h3>
+      <p className="mt-1 text-white/80">{desc}</p>
+    </Card>
   );
 }
 
 function CaseCard({ title, lines, emoji }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
+    <Card>
       <div className="mb-2 text-3xl">{emoji}</div>
       <h3 className="text-lg font-semibold">{title}</h3>
       <ul className="mt-2 space-y-1 text-white/80 text-sm">
         {lines.map((l) => (
-          <li key={l} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" /> {l}</li>
+          <li key={l} className="flex items-center gap-2">
+            <img className="h-5 w-5" src="/check.svg" alt="" /> {l}
+          </li>
         ))}
       </ul>
-    </div>
+    </Card>
   );
 }
 
 function PriceCard({ tier, price, period, bullets, highlight }) {
   return (
-    <div
-      className={`relative rounded-2xl border p-5 ${highlight
-        ? "border-amber-500/40 bg-gradient-to-b from-amber-500/10 to-amber-400/10"
-        : "border-white/10 bg-neutral-900/40"
-        }`}
-    >
+    <Card highlight={!!highlight}>
       {highlight && (
         <div className="absolute -top-3 left-5 rounded-full bg-gradient-to-r from-amber-600 to-amber-400 px-3 py-1 text-xs font-semibold text-neutral-900 shadow">
           Recomendado
@@ -637,18 +670,22 @@ function PriceCard({ tier, price, period, bullets, highlight }) {
       </div>
       <ul className="mt-4 space-y-1 text-white/80 text-sm">
         {bullets.map((b) => (
-          <li key={b} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" /> {b}</li>
+          <li key={b} className="flex items-center gap-2">
+            <img className="h-5 w-5" src="/check.svg" alt="" />
+            {b}
+          </li>
         ))}
       </ul>
       <a
         href="#contacto"
-        className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90"
+        className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90 transition active:scale-[0.98]"
       >
         Empezar
       </a>
-    </div>
+    </Card>
   );
 }
+
 
 function Faq({ q, a }) {
   return (
@@ -676,5 +713,54 @@ function Reveal({ children, delay = 0, y = 16, as = "div", className = "" }) {
     >
       {children}
     </Tag>
+  );
+}
+
+function SvgHover({ children }) {
+  return (
+    <motion.span
+      className="inline-grid place-items-center"
+      whileHover={{ scale: 1.08, rotate: 2 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 320, damping: 20 }}
+    >
+      {children}
+    </motion.span>
+  );
+}
+
+function Card({ className = "", children, highlight = false, }) {
+  return (
+    <motion.div
+      className={`relative rounded-2xl border p-5 bg-neutral-900/40 border-white/10 ${className}`}
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      {/* Glow/borde animado sutil cuando highlight */}
+      {highlight && (
+        <div className="pointer-events-none absolute inset-0 rounded-2xl">
+          <motion.div
+            className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-amber-500/40 via-amber-300/40 to-amber-500/40 blur-[2px]"
+            animate={{ x: ["-10%", "110%"] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            style={{ maskImage: "radial-gradient(220px 80px at 50% -20px, black, transparent)" }}
+          />
+        </div>
+      )}
+      {children}
+    </motion.div>
+  );
+}
+function HeroChat({ children }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 60]); // 0→60px
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
+  return (
+    <motion.div ref={ref} style={{ y, opacity }}>
+      {children}
+    </motion.div>
   );
 }
