@@ -1,12 +1,22 @@
 import { useRef, useState, useEffect } from "react";
 import robotsLogo from "../assets/logo.jpg";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-
+import { Dock, DockIcon } from "@/components/magicui/dock";
+import { Particles } from "@/components/magicui/particles";
+import Lenis from "lenis";
 
 export default function Presentacion() {
   const year = new Date().getFullYear();
 
   const WHATSAPP_NUMBER = "522712128513";
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
+
 
   const [sector, setSector] = useState("consultorios");
   const [customRole, setCustomRole] = useState("");
@@ -165,6 +175,8 @@ export default function Presentacion() {
   )}`;
 
   return (
+
+
     <div className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-amber-500/30 selection:text-neutral-950">
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-amber-600/20 blur-3xl" />
@@ -214,6 +226,7 @@ export default function Presentacion() {
       </header>
 
       <section className="relative">
+        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-20 pt-14 md:grid-cols-2 md:pt-24">
           <div>
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
@@ -323,6 +336,7 @@ export default function Presentacion() {
       </section>
 
       <section id="industrias" className="border-t border-white/5">
+        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -375,6 +389,8 @@ export default function Presentacion() {
 
       {/* Integraciones */}
       <section id="integraciones" className="border-t border-white/5">
+
+        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -492,6 +508,7 @@ export default function Presentacion() {
 
       {/* FAQ */}
       <section id="faq" className="border-t border-white/5 bg-neutral-900/30">
+        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
             Preguntas frecuentes
@@ -548,29 +565,9 @@ export default function Presentacion() {
               <a href="#" className="hover:text-white">Contacto</a>
             </div>
 
+
             <div className="flex items-center gap-3">
-              <SvgHover>
-                <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
-              </SvgHover>
-
-              <SvgHover>
-                <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" aria-label="CV" className="hover:text-white"><img className="h-5 w-5" src="/url.svg" alt="" /></a>
-              </SvgHover>
-
-              <SvgHover>
-                <a href="https://www.instagram.com/waldopenaa/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
-              </SvgHover>
-
-              <SvgHover>
-                <a href="https://www.instagram.com/reyvallejo003/" target="_blank" aria-label="Instagram" className="hover:text-white"><img className="h-5 w-5" src="/instagram.svg" alt="" /></a>
-              </SvgHover>
-              <SvgHover>
-                <a href="https://github.com/Reynaldo003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
-              </SvgHover>
-
-              <SvgHover>
-                <a href="https://github.com/Francisco2000003" target="_blank" aria-label="GitHub" className="hover:text-white"><img className="h-5 w-5" src="/github.svg" alt="" /></a>
-              </SvgHover>
+              <BottomDock></BottomDock>
             </div>
           </div>
         </div>
@@ -762,5 +759,59 @@ function HeroChat({ children }) {
     <motion.div ref={ref} style={{ y, opacity }}>
       {children}
     </motion.div>
+  );
+}
+
+export function BottomDock() {
+  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+  return (
+
+    <Dock className=" rounded-2xl border border-white/10 bg-neutral-900/70 p-2 backdrop-blur">
+      <DockIcon className="flex items-center gap-3">
+        <SvgHover>
+          <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" rel="noreferrer">
+            <img className="h-5 w-5" src="/url.svg" />
+          </a>
+        </SvgHover>
+      </DockIcon>
+      <DockIcon>
+        <SvgHover>
+          <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" rel="noreferrer">
+            <img className="h-5 w-5" src="/url.svg" />
+          </a>
+        </SvgHover>
+      </DockIcon>
+
+      <DockIcon>
+        <SvgHover>
+          <a href="https://www.instagram.com/reyvallejo003/" target="_blank" rel="noreferrer">
+            <img className="h-5 w-5" src="/instagram.svg" />
+          </a>
+        </SvgHover>
+      </DockIcon>
+      <DockIcon>
+        <SvgHover>
+          <a href="https://www.instagram.com/waldopenaa/" target="_blank" rel="noreferrer">
+            <img className="h-5 w-5" src="/instagram.svg" />
+          </a>
+        </SvgHover>
+      </DockIcon>
+
+      <DockIcon>
+        <SvgHover>
+          <a href="https://github.com/Reynaldo003" target="_blank" rel="noreferrer">
+            <img className="h-5 w-5" src="/github.svg" />
+          </a>
+        </SvgHover>
+      </DockIcon>
+      <DockIcon>
+        <SvgHover>
+          <a href="https://github.com/Francisco2000003" target="_blank" rel="noreferrer">
+            <img className="h-5 w-5" src="/github.svg" />
+          </a>
+        </SvgHover>
+      </DockIcon>
+    </Dock>
   );
 }
