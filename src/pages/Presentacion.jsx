@@ -3,6 +3,8 @@ import robotsLogo from "../assets/logo.jpg";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { Particles } from "@/components/magicui/particles";
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+
 import Lenis from "lenis";
 
 export default function Presentacion() {
@@ -572,12 +574,13 @@ export default function Presentacion() {
           </div>
         </div>
       </footer>
+      <InteractiveHoverButton className="fixed bottom-20 right-4 mb-24 inline-flex items-center gap-2 rounded-full bg-amber-600 px-4 py-3 w-32
+        font-semibold text-neutral-950 shadow-xl hover:brightness-110
+        [animation:pulse-soft_3.5s_ease-in-out_infinite]" >Contacto</InteractiveHoverButton>
 
       <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`}
         target="_blank"
-        rel="noreferrer" className="fixed bottom-20 right-4 mb-10 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3
-        font-semibold text-neutral-950 shadow-xl hover:brightness-110
-        [animation:pulse-soft_3.5s_ease-in-out_infinite]">
+        rel="noreferrer" >
         <img className="h-5 w-5" src="/whatsapp.svg" alt="" />
         Contacto
       </a>
