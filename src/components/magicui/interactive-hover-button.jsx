@@ -7,13 +7,13 @@ export const InteractiveHoverButton = React.forwardRef(({ children, className, .
     <button
       ref={ref}
       className={cn(
-        "group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-background p-2 px-6 text-center font-semibold",
+        "group relative w-auto cursor-pointer overflow-hidden rounded-full  bg-background p-2 px-6 text-center font-semibold",
         className
       )}
       {...props}>
       <div className="flex items-center gap-2">
         <div
-          className="h-5 w-5 rounded-full bg-amber-500 transition-all duration-300 group-hover:scale-[100.8]">
+          className="h-5 w-5 rounded-full bg-gradient-to-r from-amber-400 to-amber-700  transition-all duration-300 group-hover:scale-[100.8]">
           <img src="/whatsapp.svg" alt="" />
         </div>
         <span

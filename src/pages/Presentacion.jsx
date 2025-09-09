@@ -574,16 +574,11 @@ export default function Presentacion() {
           </div>
         </div>
       </footer>
-      <InteractiveHoverButton className="fixed bottom-20 right-4 mb-24 inline-flex items-center gap-2 rounded-full bg-amber-600 px-4 py-3 w-32
-        font-semibold text-neutral-950 shadow-xl hover:brightness-110
-        [animation:pulse-soft_3.5s_ease-in-out_infinite]" >Contacto</InteractiveHoverButton>
-
-      <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`}
-        target="_blank"
-        rel="noreferrer" >
-        <img className="h-5 w-5" src="/whatsapp.svg" alt="" />
-        Contacto
-      </a>
+      <InteractiveHoverButton className="fixed bottom-20 right-4 mb-24 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-700 to-amber-400 px-4 py-3 w-32
+        font-semibold text-neutral-950 shadow-xl hover:brightness-110 
+        [animation:pulse-soft_3.5s_ease-in-out_infinite]"
+        onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20informes`, "_blank")}
+      >Contacto</InteractiveHoverButton>
     </div >
   );
 }
