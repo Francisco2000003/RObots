@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { Particles } from "@/components/magicui/particles";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import { LineShadowText } from "@/components/magicui/line-shadow-text";
 
 import Lenis from "lenis";
 
@@ -228,7 +229,7 @@ export default function Presentacion() {
       </header>
 
       <section className="relative">
-        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
+        <Particles className="absolute min-w-full max-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-20 pt-14 md:grid-cols-2 md:pt-24">
           <div>
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
@@ -338,7 +339,7 @@ export default function Presentacion() {
       </section>
 
       <section id="industrias" className="border-t border-white/5">
-        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
+        <Particles className="absolute min-w-full max-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -392,7 +393,7 @@ export default function Presentacion() {
       {/* Integraciones */}
       <section id="integraciones" className="border-t border-white/5">
 
-        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
+        <Particles className="absolute min-w-full max-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -510,7 +511,7 @@ export default function Presentacion() {
 
       {/* FAQ */}
       <section id="faq" className="border-t border-white/5 bg-neutral-900/30">
-        <Particles className="absolute min-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
+        <Particles className="absolute min-w-full max-w-full" quantity={120} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <Reveal as="h2" className="text-2xl font-bold md:text-3xl">
             Preguntas frecuentes
@@ -582,7 +583,7 @@ export default function Presentacion() {
     </div >
   );
 }
-/* -------------------- UI atoms -------------------- */
+
 function ChatBubble({ side = "left", text }) {
   const isLeft = side === "left";
   const bubbleClass = isLeft
