@@ -5,6 +5,7 @@ import { Dock, DockIcon } from "@/components/magicui/dock";
 import { Particles } from "@/components/magicui/particles";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Lenis from "lenis";
+import { Home } from "lucide-react";
 
 export default function Presentacion() {
   const year = new Date().getFullYear();
@@ -786,8 +787,25 @@ export function BottomDock() {
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-
     <Dock className=" rounded-2xl border border-white/10 bg-neutral-900/70 p-2 backdrop-blur">
+      <DockIcon className="flex items-center gap-3 ml-2">
+        <SvgHover>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Ir al inicio"
+            className="flex items-center justify-center"
+          >
+            <Home className="h-5 w-5" />
+          </button>
+        </SvgHover>
+      </DockIcon>
+
+      {/* SEPARADOR */}
+      <div
+        role="separator"
+        aria-orientation="vertical"
+        className="mx-2 h-10 w-px bg-white/15 self-stretch"
+      />
       <DockIcon className="flex items-center gap-3">
         <SvgHover>
           <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" rel="noreferrer">
