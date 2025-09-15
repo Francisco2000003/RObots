@@ -600,7 +600,7 @@ export default function Presentacion() {
                 </ul>
               </div>
             </div>
-            <div className="flex items-center md:justify-end">
+            <div className="">
               <BottomDock />
             </div>
           </div>
@@ -785,7 +785,7 @@ export function BottomDock() {
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <Dock className=" rounded-2xl border border-white/10 bg-neutral-900/70 p-2 backdrop-blur">
+    <Dock className="absolute rounded-2xl border border-white/10 bg-neutral-900/70 p-2 backdrop-blur">
       <DockIcon className="flex items-center gap-3 ml-2">
         <SvgHover>
           <button
