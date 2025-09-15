@@ -344,7 +344,6 @@ export default function Presentacion() {
         </div>
       </section>
 
-
       <section id="beneficios" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
@@ -574,7 +573,6 @@ export default function Presentacion() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-10 text-sm text-white/70">
           <div className="grid gap-8 md:grid-cols-3">
@@ -794,13 +792,13 @@ export function BottomDock() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Ir al inicio"
             className="flex items-center justify-center"
+            rel="noreferrer"
           >
             <Home className="h-5 w-5" />
           </button>
         </SvgHover>
       </DockIcon>
 
-      {/* SEPARADOR */}
       <div
         role="separator"
         aria-orientation="vertical"
@@ -808,7 +806,7 @@ export function BottomDock() {
       />
       <DockIcon className="flex items-center gap-3">
         <SvgHover>
-          <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" rel="noreferrer">
+          <a href="https://rey-khaki.vercel.app/" target="_blank" rel="noreferrer">
             <img className="h-5 w-5" src="/url.svg" loading="lazy" />
           </a>
         </SvgHover>
