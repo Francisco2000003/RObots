@@ -609,7 +609,7 @@ export default function Presentacion() {
           </div>
         </div>
       </footer>
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0">
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 bg-red-500 h-0 mb-20 pr-10">
         <InteractiveHoverButton className="bottom-20 right-4 mb-24 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-700 to-amber-400 px-4 py-3 w-32
         font-semibold text-neutral-950 shadow-xl hover:brightness-110 
         [animation:pulse-soft_3.5s_ease-in-out_infinite]"
