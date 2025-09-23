@@ -813,7 +813,7 @@ export function BottomDock() {
       </DockIcon>
       <DockIcon>
         <SvgHover>
-          <a href="https://youtu.be/x9AWQ6WVSNY?si=azPcNTso5aUWPPlE&t=8702" target="_blank" rel="noreferrer">
+          <a href="https://cvv-alpha.vercel.app/" target="_blank" rel="noreferrer">
             <img className="h-5 w-5" src="/url.svg" loading="lazy" />
           </a>
         </SvgHover>
