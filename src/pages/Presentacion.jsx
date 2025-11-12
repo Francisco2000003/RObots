@@ -1,15 +1,14 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import robotsLogo from "../assets/logo.jpg";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { Particles } from "@/components/magicui/particles";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Lenis from "lenis";
-import { Home } from "lucide-react";
+import { Home, Code2, Monitor, Wrench, Atom, Cpu, ShieldCheck, Layers3, Globe, Sparkles } from "lucide-react";
 
 export default function Presentacion() {
   const year = new Date().getFullYear();
-
   const WHATSAPP_NUMBER = "522712128513";
 
   useEffect(() => {
@@ -23,170 +22,47 @@ export default function Presentacion() {
   const [customRole, setCustomRole] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // NUEVO: opciones rápidas para "configurador" del apartado Software
+  const FEATURE_OPTIONS = [
+    "E‑commerce",
+    "Agenda de citas",
+    "Panel Admin",
+    "Pagos en línea",
+    "Inventarios",
+    "CRM/Leads",
+    "Integración WhatsApp",
+    "Reportes/BI",
+    "Usuarios/Roles",
+  ];
+  const [picked, setPicked] = useState([]);
+  const togglePick = (f) => setPicked((prev) => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f]);
+  const softwareHref = useMemo(() => {
+    const text = `Hola, me interesa *desarrollo a medida* (web/escritorio).\nRequerimientos: ${picked.length ? picked.join(", ") : "(por definir)"}.`;
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  }, [picked]);
+
   const planes = {
     consultorios: [
-      {
-        tier: "Nova",
-        price: "$1,990",
-        period: "/mes",
-        bullets: [
-          "Citas y recordatorios",
-          "Respuestas Inteligentes a Cualquier Pregunta",
-          "1 integración (Sheets)",
-          "Soporte por chat",
-          "Detalles Promocionales PDF"
-        ],
-      },
-      {
-        tier: "Quásar",
-        price: "$3,490",
-        period: "/mes",
-        bullets: [
-          "Todo Nova",
-          "Generacion de Receta Automatica",
-          "Reprogramaciones",
-          "2–3 integraciones (Sheets, BD, MetaAds)",
-          "Promocion Web",
-          "Flujos Conversacionales personalizados",
-        ],
-        highlight: true,
-      },
-      {
-        tier: "Supernova",
-        price: "$5,990",
-        period: "/mes",
-        bullets: [
-          "Agenda multi-doctor",
-          "Reportes automáticos",
-          "Integraciones multiples",
-          "Visualizador Web",
-          "IA Avanzada"
-        ],
-      },
+      { tier: "Nova", price: "$1,990", period: "/mes", bullets: ["Citas y recordatorios", "Respuestas Inteligentes a Cualquier Pregunta", "1 integración (Sheets)", "Soporte por chat", "Detalles Promocionales PDF"], },
+      { tier: "Quásar", price: "$3,490", period: "/mes", bullets: ["Todo Nova", "Generacion de Receta Automatica", "Reprogramaciones", "2–3 integraciones (Sheets, BD, MetaAds)", "Promocion Web", "Flujos Conversacionales personalizados",], highlight: true, },
+      { tier: "Supernova", price: "$5,990", period: "/mes", bullets: ["Agenda multi-doctor", "Reportes automáticos", "Integraciones multiples", "Visualizador Web", "IA Avanzada"], },
     ],
-
     concesionarias: [
-      {
-        tier: "Nova",
-        price: "$4,990",
-        period: "/mes",
-        bullets: [
-          "Registro de Leads",
-          "Notificaciones De Citas Por Correo",
-          "Detalles Promocionales PDF",
-          "1 Integracion (Sheets)",
-          "Soporte por chat",
-        ],
-      },
-      {
-        tier: "Quásar",
-        price: "$6,990",
-        period: "/mes",
-        bullets: [
-          "Todo Nova",
-          "Agendador de pruebas de manejo",
-          "Fichas Tecnicas PDF",
-          "Respuestas Profesionales y Avanzadas",
-          "3–4 integraciones (Sheets, BD, Drive/MetaAds)",
-          "Promocion Web",
-          "Flujos Conversacionales Personalizados",
-        ],
-        highlight: true,
-      },
-      {
-        tier: "Supernova",
-        price: "$8,990",
-        period: "/mes",
-        bullets: [
-          "Integracion avanzada a CRM",
-          "Reportes Graficos Personalizados",
-          "Capacitación",
-          "Onboarding dedicado",
-          "Visualizador Web"
-        ],
-      },
+      { tier: "Nova", price: "$4,990", period: "/mes", bullets: ["Registro de Leads", "Notificaciones De Citas Por Correo", "Detalles Promocionales PDF", "1 Integracion (Sheets)", "Soporte por chat",], },
+      { tier: "Quásar", price: "$6,990", period: "/mes", bullets: ["Todo Nova", "Agendador de pruebas de manejo", "Fichas Tecnicas PDF", "Respuestas Profesionales y Avanzadas", "3–4 integraciones (Sheets, BD, Drive/MetaAds)", "Promocion Web", "Flujos Conversacionales Personalizados",], highlight: true, },
+      { tier: "Supernova", price: "$8,990", period: "/mes", bullets: ["Integracion avanzada a CRM", "Reportes Graficos Personalizados", "Capacitación", "Onboarding dedicado", "Visualizador Web"], },
     ],
-
     restaurantes: [
-      {
-        tier: "Nova",
-        price: "$1,490",
-        period: "/mes",
-        bullets: [
-          "Reservas y confirmaciones",
-          "Notificacion de pedidos",
-          "Menú en WhatsApp",
-          "1 integración (Sheets)",
-          "Soporte por chat",
-        ],
-      },
-      {
-        tier: "Quásar",
-        price: "$2,790",
-        period: "/mes",
-        bullets: [
-          "Todo Nova",
-          "Pedidos Para Recoger o a domicilio",
-          "Promociones Activas PDF",
-          "2–3 integraciones (Sheets, BD, MetaAds)",
-          "Promocion Web",
-          "Flujos Conversacionales Personalizados",
-        ],
-        highlight: true,
-      },
-      {
-        tier: "Supernova",
-        price: "$4,490",
-        period: "/mes",
-        bullets: [
-          "Segmentación de clientes",
-          "Promos automatizadas",
-          "Reportes de ocupación",
-          "Integraciones a medida",
-          "Visualizador Web"
-        ],
-      },
+      { tier: "Nova", price: "$1,490", period: "/mes", bullets: ["Reservas y confirmaciones", "Notificacion de pedidos", "Menú en WhatsApp", "1 integración (Sheets)", "Soporte por chat",], },
+      { tier: "Quásar", price: "$2,790", period: "/mes", bullets: ["Todo Nova", "Pedidos Para Recoger o a domicilio", "Promociones Activas PDF", "2–3 integraciones (Sheets, BD, MetaAds)", "Promocion Web", "Flujos Conversacionales Personalizados",], highlight: true, },
+      { tier: "Supernova", price: "$4,490", period: "/mes", bullets: ["Segmentación de clientes", "Promos automatizadas", "Reportes de ocupación", "Integraciones a medida", "Visualizador Web"], },
     ],
-
     gimnasios: [
-      {
-        tier: "Nova",
-        price: "$1,490",
-        period: "/mes",
-        bullets: [
-          "Inscripciones Automatizadas",
-          "Detalles Promocionales PDF",
-          "1 integración (Sheets)",
-          "Soporte por chat",
-        ],
-      },
-      {
-        tier: "Quásar",
-        price: "$2,190",
-        period: "/mes",
-        bullets: [
-          "Todo Nova",
-          "Recordatorios de pagos",
-          "2–3 integraciones (Sheets, BD, MetaAds)",
-          "Promocion Web",
-          "Flujos Conversacionales Personalizados",
-        ],
-        highlight: true,
-      },
-      {
-        tier: "Supernova",
-        price: "$4,490",
-        period: "/mes",
-        bullets: [
-          "Gestión de membresías",
-          "Reportes y retención",
-          "Integraciones a medida",
-          "Visualizador Web"
-        ],
-      },
+      { tier: "Nova", price: "$1,490", period: "/mes", bullets: ["Inscripciones Automatizadas", "Detalles Promocionales PDF", "1 integración (Sheets)", "Soporte por chat",], },
+      { tier: "Quásar", price: "$2,190", period: "/mes", bullets: ["Todo Nova", "Recordatorios de pagos", "2–3 integraciones (Sheets, BD, MetaAds)", "Promocion Web", "Flujos Conversacionales Personalizados",], highlight: true, },
+      { tier: "Supernova", price: "$4,490", period: "/mes", bullets: ["Gestión de membresías", "Reportes y retención", "Integraciones a medida", "Visualizador Web"], },
     ],
   };
-
 
   const otherBizHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     `Hola, tengo un negocio de tipo: ${customRole || "(especificar)"} y me interesa un chatbot RObots.`
@@ -194,26 +70,16 @@ export default function Presentacion() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-amber-500/30 selection:text-neutral-950 overflow-x-clip antialiased">
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-amber-600/20 blur-3xl" />
-        <div className="absolute top-1/2 -right-16 h-72 w-72 -translate-y-1/2 rounded-full bg-amber-400/20 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-72 w-72 translate-y-1/3 rounded-full bg-amber-500/10 blur-3xl" />
-      </div>
+      {/* AURORA / INNOVACIÓN VISUAL */}
+      <AuroraBackdrop />
 
       <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 border-b border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-3">
           <nav className="flex items-center justify-between gap-6">
             <a href="#" className="flex items-center gap-3 group">
-              <img
-                src={robotsLogo}
-                alt="RObots logo"
-                className="h-8 w-8 rounded-xl bg-amber-400/10 p-1 shadow-lg shadow-amber-500/20 object-contain"
-                loading="lazy"
-              />
+              <img src={robotsLogo} alt="RObots logo" className="h-8 w-8 rounded-xl bg-amber-400/10 p-1 shadow-lg shadow-amber-500/20 object-contain" loading="lazy" />
               <span className="text-lg font-extrabold tracking-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">
-                  RO
-                </span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">RO</span>
                 <span className="text-white/90">bots</span>
               </span>
             </a>
@@ -223,6 +89,7 @@ export default function Presentacion() {
               <li><a className="hover:text-white" href="#industrias">Industrias</a></li>
               <li><a className="hover:text-white" href="#funciona">Cómo funciona</a></li>
               <li><a className="hover:text-white" href="#integraciones">Integraciones</a></li>
+              <li><a className="hover:text-white" href="#software">Software</a></li>
               <li><a className="hover:text-white" href="#precios">Precios</a></li>
               <li><a className="hover:text-white" href="#faq">FAQ</a></li>
             </ul>
@@ -232,10 +99,10 @@ export default function Presentacion() {
               <div className="md:hidden border-t bg-neutral-950/80 backdrop-blur">
                 <ul className="grid gap-2 text-sm">
                   <li><a href="#beneficios" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Beneficios</a></li>
-                  <li><a href="#beneficios" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Beneficios</a></li>
                   <li><a href="#industrias" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Industrias</a></li>
                   <li><a href="#funciona" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Cómo funciona</a></li>
                   <li><a href="#integraciones" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Integraciones</a></li>
+                  <li><a href="#software" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Software</a></li>
                   <li><a href="#precios" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">Precios</a></li>
                   <li><a href="#faq" onClick={() => setMobileOpen(false)} className="block px-3 py-2 hover:bg-white/5">FAQ</a></li>
                 </ul>
@@ -245,8 +112,7 @@ export default function Presentacion() {
             <div className="flex items-center gap-2">
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`}
-                target="_blank"
-                rel="noreferrer"
+                target="_blank" rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2 text-sm font-semibold text-neutral-900 shadow-lg shadow-amber-500/20 hover:brightness-110"
               >
                 <img className="h-6 w-6" src="/whatsapp.svg" alt="" loading="lazy" />
@@ -257,15 +123,14 @@ export default function Presentacion() {
         </div>
       </header>
 
+      {/* HERO */}
       <section className="relative overflow-hidden">
         <Particles className="pointer-events-none absolute inset-0 w-full h-full" quantity={100} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-20 pt-14 md:grid-cols-2 md:pt-24">
           <div>
             <h1 className="text-balance text-4xl md:text-5xl font-black leading-tight tracking-tight">
               Chatbot para WhatsApp que{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">
-                atiende por ti
-              </span>{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500"> atiende por ti</span>{" "}
               24/7
             </h1>
             <p className="mt-4 text-base leading-relaxed text-white/80 md:text-lg">
@@ -273,12 +138,7 @@ export default function Presentacion() {
               Nuestro chatbot se conecta con <strong>Google Sheets</strong> y archivos para almacenar, consultar y actualizar información en tiempo real.
             </p>
             <ul className="mt-6 space-y-2 text-white/90">
-              {[
-                "Responder automáticamente a clientes 24/7.",
-                "Agendar citas sin intervención humana.",
-                "Compartir promociones, planes o catálogos al instante.",
-                "Centralizar toda la información en un solo lugar.",
-              ].map((item) => (
+              {["Responder automáticamente a clientes 24/7.", "Agendar citas sin intervención humana.", "Compartir promociones, planes o catálogos al instante.", "Centralizar toda la información en un solo lugar."].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <img className="h-5 w-5" src="/check.svg" alt="" loading="lazy" />
                   <span>{item}</span>
@@ -287,20 +147,11 @@ export default function Presentacion() {
             </ul>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#contacto"
-                className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90"
-              >
-                Agendar visita presencial
-              </a>
-              <a
-                href="#precios"
-                className="inline-flex items-center justify-center rounded-xl border border-white/15 px-4 py-2.5 text-sm font-semibold text-white/90 hover:bg-white/5"
-              >
-                Ver planes
-              </a>
+              <a href="#contacto" className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Agendar visita presencial</a>
+              <a href="#precios" className="inline-flex items-center justify-center rounded-xl border border-white/15 px-4 py-2.5 text-sm font-semibold text-white/90 hover:bg-white/5">Ver planes</a>
             </div>
           </div>
+
           <HeroChat>
             <div className="md:justify-self-end">
               <div className="mx-auto w-full max-w-md rounded-3xl border border-white/10 bg-neutral-900/60 p-4 shadow-2xl backdrop-blur">
@@ -330,28 +181,20 @@ export default function Presentacion() {
                 </div>
 
                 <div className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-neutral-800 px-3 py-2 text-sm text-white/60">
-                  <div className="flex -space-x-1">
-                    <Dot />
-                    <Dot />
-                    <Dot />
-                  </div>
+                  <div className="flex -space-x-1"><Dot /><Dot /><Dot /></div>
                   Generando respuesta…
                 </div>
               </div>
             </div>
-
           </HeroChat>
         </div>
       </section>
 
+      {/* BENEFICIOS */}
       <section id="beneficios" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
-            Beneficios clave
-          </Reveal>
-          <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
-            Ahorra tiempo, reduce costos y brinda una experiencia consistente a cada cliente.
-          </Reveal>
+          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">Beneficios clave</Reveal>
+          <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">Ahorra tiempo, reduce costos y brinda una experiencia consistente a cada cliente.</Reveal>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <FeatureCard title="Atención 24/7" desc="Nunca pierdas oportunidades por fuera de horario." icon={<img className="h-6 w-6" src="/clock.svg" alt="" loading="lazy" />} />
@@ -362,21 +205,16 @@ export default function Presentacion() {
         </div>
       </section>
 
+      {/* INDUSTRIAS */}
       <section id="industrias" className="relative overflow-hidden border-t border-white/5">
         <Particles className="pointer-events-none absolute inset-0 w-full h-full" quantity={100} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
-                Funciona para distintos giros
-              </Reveal>
-              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
-                Personalizamos flujos para tu operativa actual.
-              </Reveal>
+              <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">Funciona para distintos giros</Reveal>
+              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">Personalizamos flujos para tu operativa actual.</Reveal>
             </div>
-            <a href="#contacto" className="hidden md:inline rounded-xl border border-white/15 px-4 py-2 text-sm text-white/90 hover:bg-white/5">
-              Solicitar casos de uso
-            </a>
+            <a href="#contacto" className="hidden md:inline rounded-xl border border-white/15 px-4 py-2 text-sm text-white/90 hover:bg-white/5">Solicitar casos de uso</a>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -400,11 +238,10 @@ export default function Presentacion() {
         </div>
       </section>
 
+      {/* CÓMO FUNCIONA */}
       <section id="funciona" className="border-t border-white/5 bg-neutral-900/30">
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
-            Cómo funciona
-          </Reveal>
+          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">Cómo funciona</Reveal>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Step n={1} title="Diagnóstico" desc="Entendemos tu proceso actual y definimos objetivos claros." />
             <Step n={2} title="Implementación" desc="Conectamos WhatsApp con Sheets/archivos y adaptamos los flujos." />
@@ -413,80 +250,138 @@ export default function Presentacion() {
         </div>
       </section>
 
+      {/* INTEGRACIONES */}
       <section id="integraciones" className="relative overflow-hidden border-t border-white/5">
         <Particles className="pointer-events-none absolute inset-0 w-full h-full" quantity={100} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
-                Integraciones nativas
-              </Reveal>
-              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
-                Conectamos con tus herramientas de todos los días.
-              </Reveal>
+              <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">Integraciones nativas</Reveal>
+              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">Conectamos con tus herramientas de todos los días.</Reveal>
             </div>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <IntegrationCard title="WhatsApp" desc="Atiende y automatiza donde están tus clientes.">
-              <img className="h-6 w-6" src="/whatsappColor.svg" alt="" loading="lazy" />
-            </IntegrationCard>
-            <IntegrationCard title="Google Sheets" desc="Registra clientes, citas, pedidos y reportes.">
-              <img className="h-6 w-6" src="/sheets.svg" alt="" loading="lazy" />
-            </IntegrationCard>
-            <IntegrationCard title="Google Drive" desc="Comparte catálogos y PDFs en segundos.">
-              <img className="h-6 w-6" src="/drive.svg" alt="" loading="lazy" />
-            </IntegrationCard>
-            <IntegrationCard title="Webhooks" desc="Conecta con tu CRM, ERP o sistema propio.">
-              <img className="h-6 w-6" src="/thunder.svg" alt="" loading="lazy" />
-            </IntegrationCard>
+            <IntegrationCard title="WhatsApp" desc="Atiende y automatiza donde están tus clientes."><img className="h-6 w-6" src="/whatsappColor.svg" alt="" loading="lazy" /></IntegrationCard>
+            <IntegrationCard title="Google Sheets" desc="Registra clientes, citas, pedidos y reportes."><img className="h-6 w-6" src="/sheets.svg" alt="" loading="lazy" /></IntegrationCard>
+            <IntegrationCard title="Google Drive" desc="Comparte catálogos y PDFs en segundos."><img className="h-6 w-6" src="/drive.svg" alt="" loading="lazy" /></IntegrationCard>
+            <IntegrationCard title="Webhooks" desc="Conecta con tu CRM, ERP o sistema propio."><img className="h-6 w-6" src="/thunder.svg" alt="" loading="lazy" /></IntegrationCard>
           </div>
         </div>
       </section>
 
+      {/* NUEVO: SOFTWARE A MEDIDA */}
+      <section id="software" className="relative border-t border-white/5 bg-neutral-900/20">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <AuroraRings />
+        </div>
+        <div className="mx-auto max-w-7xl px-4 py-16">
+          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight flex items-center gap-2">
+            <Sparkles className="h-6 w-6 text-amber-400" /> Desarrollo de software a medida
+          </Reveal>
+          <Reveal delay={0.05} className="mt-2 max-w-3xl text-white/70">
+            También diseñamos y construimos <strong>páginas web profesionales</strong> y <strong>software de escritorio / ERPs</strong> para empresas, PyMEs y proyectos ambiciosos. Sin precios fijos: cotizamos según alcance.
+          </Reveal>
+
+          {/* tarjetas */}
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <Card className="bg-gradient-to-b from-white/5 to-transparent">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
+                <Globe className="h-4 w-4" /> Web profesionales
+              </div>
+              <ul className="text-white/80 text-sm space-y-1">
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Landing/Corporativo/Blog</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />E‑commerce y pasarelas</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />SEO técnico y performance</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Integración con WhatsApp/CRM</li>
+              </ul>
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Cotizar por WhatsApp</a>
+            </Card>
+
+            <Card className="bg-gradient-to-b from-white/5 to-transparent">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
+                <Monitor className="h-4 w-4" /> Software de escritorio / ERP
+              </div>
+              <ul className="text-white/80 text-sm space-y-1">
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Inventarios, ventas, facturación</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Multi‑sucursal y roles</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Reportes/BI (Power BI)</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Integración con bases de datos</li>
+              </ul>
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Cotizar por WhatsApp</a>
+            </Card>
+
+            <Card className="bg-gradient-to-b from-white/5 to-transparent" highlight>
+              <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
+                <Wrench className="h-4 w-4" /> Mantenimiento y escalamiento
+              </div>
+              <ul className="text-white/80 text-sm space-y-1">
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Soporte evolutivo</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Hardening y seguridad</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Monitoreo y analítica</li>
+                <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />SLA y respaldos</li>
+              </ul>
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Cotizar por WhatsApp</a>
+            </Card>
+          </div>
+
+          {/* Configurador mínimo (innovador y útil) */}
+          <div className="mt-8 rounded-2xl border border-white/10 bg-neutral-900/50 p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2"><Code2 className="h-5 w-5" /> Define rápido tu proyecto</h3>
+            <p className="mt-1 text-white/70 text-sm">Selecciona lo que necesitas y envíalo directo a WhatsApp para cotizar sin precios fijos.</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {FEATURE_OPTIONS.map((f) => (
+                <button key={f} onClick={() => togglePick(f)}
+                  className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${picked.includes(f) ? "bg-amber-500 text-neutral-900 border-amber-400" : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"}`}>{f}</button>
+              ))}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2 text-sm font-semibold text-neutral-900 shadow hover:brightness-110">
+                <img className="h-5 w-5" src="/whatsapp.svg" alt="" loading="lazy" /> Enviar selección por WhatsApp
+              </a>
+              <a href={`mailto:hola@robots.ai?subject=Cotizaci%C3%B3n%20Software%20a%20medida&body=${encodeURIComponent("Hola, me interesa desarrollo a medida. Requerimientos: " + (picked.join(", ") || "(por definir)"))}`} className="inline-flex items-center justify-center rounded-xl border border-white/15 px-4 py-2 text-sm font-semibold text-white/90 hover:bg-white/5">Enviar por correo</a>
+            </div>
+
+            {/* Marquee de stack (toque visual) */}
+            <TechMarquee />
+          </div>
+
+          {/* Otra opción propuesta: Discovery / Auditoría */}
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <Card className="bg-neutral-900/40">
+              <div className="mb-2 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80"><Atom className="h-4 w-4" /> Discovery de 30 min (gratuito)</div>
+              <p className="text-sm text-white/80">Llamada para entender objetivos, riesgos y rutas de implementación. Entregamos una propuesta de alto nivel.</p>
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero agendar un discovery de 30 min para un proyecto de software.")}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-900 hover:bg-white/90">Agendar por WhatsApp</a>
+            </Card>
+            <Card className="bg-neutral-900/40">
+              <div className="mb-2 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80"><ShieldCheck className="h-4 w-4" /> Auditoría de sitio/app</div>
+              <p className="text-sm text-white/80">Revisión de performance, seguridad y UX con checklist accionable para elevar resultados.</p>
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero una auditoría técnica de mi sitio/app.")}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Solicitar auditoría</a>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* PRECIOS */}
       <section id="precios" className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
-                Planes por giro
-              </Reveal>
-              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">
-                Precios en MXN. Ajustamos según complejidad y volumen.
-              </Reveal>
+              <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">Planes por giro</Reveal>
+              <Reveal delay={0.05} className="mt-2 max-w-2xl text-white/70">Precios en MXN. Ajustamos según complejidad y volumen.</Reveal>
             </div>
           </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            {[
-              ["consultorios", "Consultorios"],
-              ["concesionarias", "Concesionarias"],
-              ["restaurantes", "Restaurantes"],
-              ["gimnasios", "Gimnasios"],
-            ].map(([key, label]) => (
-              <button
-                key={key}
-                onClick={() => setSector(key)}
-                className={`rounded-xl px-3 py-2 text-sm font-semibold border ${sector === key
-                  ? "bg-amber-500 text-neutral-900 border-amber-400"
-                  : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
-                  }`}
-              >
-                {label}
-              </button>
+            {[["consultorios", "Consultorios"], ["concesionarias", "Concesionarias"], ["restaurantes", "Restaurantes"], ["gimnasios", "Gimnasios"]].map(([key, label]) => (
+              <button key={key} onClick={() => setSector(key)} className={`rounded-xl px-3 py-2 text-sm font-semibold border ${sector === key ? "bg-amber-500 text-neutral-900 border-amber-400" : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"}`}>{label}</button>
             ))}
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {planes[sector].map((p) => (
-                <motion.div
-                  key={`${sector}-${p.tier}`}
-                  initial={{ opacity: 0, y: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -12, scale: 0.98 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                >
+                <motion.div key={`${sector}-${p.tier}`} initial={{ opacity: 0, y: 0, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -12, scale: 0.98 }} transition={{ duration: 0.25, ease: "easeOut" }}>
                   <PriceCard {...p} />
                 </motion.div>
               ))}
@@ -494,44 +389,23 @@ export default function Presentacion() {
           </div>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              ¿Otro giro?
-              <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs text-amber-300 border border-amber-400/30">Servicio especializado</span>
-            </h3>
-            <p className="mt-2 text-white/80 text-sm">
-              Cuéntanos tu tipo de negocio y armamos un flujo a tu medida.
-            </p>
+            <h3 className="text-lg font-semibold flex items-center gap-2">¿Otro giro? <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs text-amber-300 border border-amber-400/30">Servicio especializado</span></h3>
+            <p className="mt-2 text-white/80 text-sm">Cuéntanos tu tipo de negocio y armamos un flujo a tu medida.</p>
             <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-              <input
-                type="text"
-                value={customRole}
-                onChange={(e) => setCustomRole(e.target.value)}
-                placeholder="Ej. clínica dental, escuela de música, spa…"
-                className="flex-1 rounded-xl border border-white/10 bg-neutral-800/70 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-amber-500"
-              />
-              <a
-                href={otherBizHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2 text-sm font-semibold text-neutral-900 shadow hover:brightness-110"
-              >
-                Enviar por WhatsApp
-              </a>
+              <input type="text" value={customRole} onChange={(e) => setCustomRole(e.target.value)} placeholder="Ej. clínica dental, escuela de música, spa…" className="flex-1 rounded-xl border border-white/10 bg-neutral-800/70 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-amber-500" />
+              <a href={otherBizHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2 text-sm font-semibold text-neutral-900 shadow hover:brightness-110">Enviar por WhatsApp</a>
             </div>
           </div>
 
-          <p className="mt-4 text-xs text-white/60">
-            * Implementación inicial puede requerir un pago único según complejidad.
-          </p>
+          <p className="mt-4 text-xs text-white/60">* Implementación inicial puede requerir un pago único según complejidad.</p>
         </div>
       </section>
 
+      {/* FAQ */}
       <section id="faq" className="relative overflow-hidden border-t border-white/5 bg-neutral-900/30">
         <Particles className="pointer-events-none absolute inset-0 w-full h-full" quantity={100} staticity={40} ease={40} size={1} color="#F59E0B" />
         <div className="mx-auto max-w-7xl px-4 py-16">
-          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">
-            Preguntas frecuentes
-          </Reveal>
+          <Reveal as="h2" className="text-balance text-3xl md:text-3xl font-black leading-tight tracking-tight">Preguntas frecuentes</Reveal>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             <Faq q="¿Necesito cambiar mis herramientas actuales?" a="No. Nos integramos a tus flujos existentes (Sheets, Drive o tu CRM vía webhooks)." />
             <Faq q="¿Cuánto tarda la implementación?" a="Depende del alcance. Un flujo base suele estar listo en pocos días una vez recibimos la información." />
@@ -541,30 +415,19 @@ export default function Presentacion() {
         </div>
       </section>
 
+      {/* CONTACTO */}
       <section id="contacto" className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="grid items-start gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-6">
               <h3 className="text-xl font-bold">Agenda una visita presencial</h3>
-              <p className="mt-2 text-white/70">
-                Vamos a tu negocio en el horario que indiques. Te mostramos el sistema y resolvemos dudas.
-              </p>
-              <a
-                href="mailto:hola@robots.ai?subject=Cita%20presencial%20RObots&body=Hola%2C%20quisiera%20agendar%20una%20cita%20presencial%20para%20ver%20el%20chatbot."
-                className="mt-4 inline-flex rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90"
-              >
-                Escribir por correo
-              </a>
+              <p className="mt-2 text-white/70">Vamos a tu negocio en el horario que indiques. Te mostramos el sistema y resolvemos dudas.</p>
+              <a href="mailto:hola@robots.ai?subject=Cita%20presencial%20RObots&body=Hola%2C%20quisiera%20agendar%20una%20cita%20presencial%20para%20ver%20el%20chatbot." className="mt-4 inline-flex rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Escribir por correo</a>
             </div>
             <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-6">
               <h3 className="text-xl font-bold">Escríbenos por WhatsApp</h3>
               <p className="mt-2 text-white/70">Asesoría sin compromiso, demo en vivo y total confidencialidad.</p>
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-900 shadow hover:brightness-110"
-              >
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20una%20demo%20de%20RObots`} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-900 shadow hover:brightness-110">
                 <img className="h-5 w-5" src="/whatsapp.svg" alt="" loading="lazy" />
                 Chatear ahora
               </a>
@@ -573,6 +436,7 @@ export default function Presentacion() {
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-10 text-sm text-white/70">
           <div className="grid gap-8 md:grid-cols-3">
@@ -609,159 +473,93 @@ export default function Presentacion() {
           </div>
         </div>
       </footer>
+
+      {/* CTA flotante */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 h-0 mb-36 pr-10">
-        <InteractiveHoverButton className="bottom-20 right-4 mb-24 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-700 to-amber-400 px-4 py-3 w-32
-        font-semibold text-neutral-950 shadow-xl hover:brightness-110 
-        [animation:pulse-soft_3.5s_ease-in-out_infinite]"
-          onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20informes`, "_blank")}
-        >Contacto</InteractiveHoverButton>
-      </div>
-    </div >
-  );
-}
-
-function ChatBubble({ side = "left", text }) {
-  const isLeft = side === "left";
-  const bubbleClass = isLeft
-    ? "rounded-2xl rounded-tl-sm bg-white/10"
-    : "rounded-2xl rounded-tr-sm bg-gradient-to-r from-amber-600/70 to-amber-400/70";
-
-  return (
-    <div className={`flex ${isLeft ? "justify-start" : "justify-end"}`}>
-      <div className={`${bubbleClass} max-w-[85%] p-3 text-sm backdrop-blur`}>
-        {text}
+        <InteractiveHoverButton className="bottom-20 right-4 mb-24 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-700 to-amber-400 px-4 py-3 w-32 font-semibold text-neutral-950 shadow-xl hover:brightness-110 [animation:pulse-soft_3.5s_ease-in-out_infinite]" onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20quiero%20informes`, "_blank")}>Contacto</InteractiveHoverButton>
       </div>
     </div>
   );
 }
 
-function Dot() {
-  return <div className="h-2 w-2 animate-bounce rounded-full bg-white/40 [animation-delay:0.15s]" />;
+function ChatBubble({ side = "left", text }) {
+  const isLeft = side === "left";
+  const bubbleClass = isLeft ? "rounded-2xl rounded-tl-sm bg-white/10" : "rounded-2xl rounded-tr-sm bg-gradient-to-r from-amber-600/70 to-amber-400/70";
+  return (
+    <div className={`flex ${isLeft ? "justify-start" : "justify-end"}`}>
+      <div className={`${bubbleClass} max-w-[85%] p-3 text-sm backdrop-blur`}>{text}</div>
+    </div>
+  );
 }
+function Dot() { return <div className="h-2 w-2 animate-bounce rounded-full bg-white/40 [animation-delay:0.15s]" />; }
+
 function FeatureCard({ icon, title, desc }) {
   return (
     <Card>
-      <div className="mb-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/80">
-        {icon}{title}
-      </div>
+      <div className="mb-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/80">{icon}{title}</div>
       <p className="text-white/80">{desc}</p>
     </Card>
   );
 }
-
 function IntegrationCard({ title, desc, children }) {
   return (
     <Card>
-      <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
-        {children}{title}
-      </div>
+      <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">{children}{title}</div>
       <p className="text-white/80">{desc}</p>
     </Card>
   );
 }
-
 function Step({ n, title, desc }) {
   return (
     <Card>
-      <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">
-        Paso {n}
-      </div>
+      <div className="mb-3 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80">Paso {n}</div>
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="mt-1 text-white/80">{desc}</p>
     </Card>
   );
 }
-
 function PriceCard({ tier, price, period, bullets, highlight }) {
   return (
     <Card highlight={!!highlight}>
       {highlight && (
-        <div className="absolute -top-3 left-5 rounded-full bg-gradient-to-r from-amber-600 to-amber-400 px-3 py-1 text-xs font-semibold text-neutral-900 shadow">
-          Recomendado
-        </div>
+        <div className="absolute -top-3 left-5 rounded-full bg-gradient-to-r from-amber-600 to-amber-400 px-3 py-1 text-xs font-semibold text-neutral-900 shadow">Recomendado</div>
       )}
       <h3 className="text-lg font-bold">{tier}</h3>
-      <div className="mt-2 text-3xl font-black">
-        {price} <span className="text-sm font-semibold text-white/70">{period}</span>
-      </div>
+      <div className="mt-2 text-3xl font-black">{price} <span className="text-sm font-semibold text-white/70">{period}</span></div>
       <ul className="mt-4 space-y-1 text-white/80 text-sm">
         {bullets.map((b) => (
-          <li key={b} className="flex items-center gap-2">
-            <img className="h-5 w-5" src="/check.svg" alt="" loading="lazy" />
-            {b}
-          </li>
+          <li key={b} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" loading="lazy" />{b}</li>
         ))}
       </ul>
-      <a
-        href="#contacto"
-        className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90 transition active:scale-[0.98]"
-      >
-        Empezar
-      </a>
+      <a href="#contacto" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90 transition active:scale-[0.98]">Empezar</a>
     </Card>
   );
 }
-
-
 function Faq({ q, a }) {
   return (
     <details className="group rounded-2xl border border-white/10 bg-neutral-900/40 p-4">
-      <summary className="cursor-pointer list-none text-base font-semibold">
-        <span className="inline-flex items-center gap-2">
-          <img className="h-5 w-5" src="/question.svg" alt="" loading="lazy" />
-          {q}
-        </span>
-      </summary>
+      <summary className="cursor-pointer list-none text-base font-semibold"><span className="inline-flex items-center gap-2"><img className="h-5 w-5" src="/question.svg" alt="" loading="lazy" />{q}</span></summary>
       <p className="mt-2 text-white/80">{a}</p>
     </details>
   );
 }
-
 function Reveal({ children, delay = 0, y = 16, as = "div", className = "" }) {
   const Tag = motion[as] || motion.div;
   return (
-    <Tag
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
-      viewport={{ once: true, amount: 0.2 }}
-      className={className}
-    >
-      {children}
-    </Tag>
+    <Tag initial={{ opacity: 0, y }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut", delay }} viewport={{ once: true, amount: 0.2 }} className={className}>{children}</Tag>
   );
 }
-
 function SvgHover({ children }) {
   return (
-    <motion.span
-      className="inline-grid place-items-center"
-      whileHover={{ scale: 1.08, rotate: 2 }}
-      whileTap={{ scale: 0.96 }}
-      transition={{ type: "spring", stiffness: 320, damping: 20 }}
-    >
-      {children}
-    </motion.span>
+    <motion.span className="inline-grid place-items-center" whileHover={{ scale: 1.08, rotate: 2 }} whileTap={{ scale: 0.96 }} transition={{ type: "spring", stiffness: 320, damping: 20 }}>{children}</motion.span>
   );
 }
-
 function Card({ className = "", children, highlight = false, }) {
   return (
-    <motion.div
-      className={`relative rounded-2xl border p-5 bg-neutral-900/40 border-white/10 ${className}`}
-      whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.99 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    >
+    <motion.div className={`relative rounded-2xl border p-5 bg-neutral-900/40 border-white/10 ${className}`} whileHover={{ y: -4 }} whileTap={{ scale: 0.99 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
       {highlight && (
         <div className="pointer-events-none absolute inset-0 rounded-2xl overflow-hidden">
-
-          <motion.div
-            className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-amber-500/40 via-amber-300/40 to-amber-500/40 blur-[2px]"
-            animate={{ x: ["-10%", "110%"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            style={{ maskImage: "radial-gradient(220px 80px at 50% -20px, black, transparent)" }}
-          />
+          <motion.div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-amber-500/40 via-amber-300/40 to-amber-500/40 blur-[2px]" animate={{ x: ["-10%", "110%"] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ maskImage: "radial-gradient(220px 80px at 50% -20px, black, transparent)" }} />
         </div>
       )}
       {children}
@@ -771,68 +569,88 @@ function Card({ className = "", children, highlight = false, }) {
 function HeroChat({ children }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 60]); // 0→60px
+  const y = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-
-  return (
-    <motion.div ref={ref} style={{ y, opacity }}>
-      {children}
-    </motion.div>
-  );
+  return <motion.div ref={ref} style={{ y, opacity }}>{children}</motion.div>;
 }
-
 export function BottomDock() {
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-
   return (
     <Dock className="absolute rounded-2xl border border-white/10 bg-neutral-900/70 p-2 backdrop-blur">
       <DockIcon className="flex items-center gap-3 ml-2">
         <SvgHover>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Ir al inicio"
-            className="flex items-center justify-center"
-            rel="noreferrer"
-          >
-            <Home className="h-5 w-5" />
-          </button>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Ir al inicio" className="flex items-center justify-center" rel="noreferrer"><Home className="h-5 w-5" /></button>
         </SvgHover>
       </DockIcon>
-
-      <div
-        role="separator"
-        aria-orientation="vertical"
-        className="mx-2 h-10 w-px bg-white/15 self-stretch"
-      />
+      <div role="separator" aria-orientation="vertical" className="mx-2 h-10 w-px bg-white/15 self-stretch" />
       <DockIcon className="flex items-center gap-3">
-        <SvgHover>
-          <a href="https://rey-khaki.vercel.app/" target="_blank" rel="noreferrer">
-            <img className="h-5 w-5" src="/url.svg" loading="lazy" />
-          </a>
-        </SvgHover>
+        <SvgHover><a href="https://rey-khaki.vercel.app/" target="_blank" rel="noreferrer"><img className="h-5 w-5" src="/url.svg" loading="lazy" /></a></SvgHover>
       </DockIcon>
       <DockIcon>
-        <SvgHover>
-          <a href="https://cvv-alpha.vercel.app/" target="_blank" rel="noreferrer">
-            <img className="h-5 w-5" src="/url.svg" loading="lazy" />
-          </a>
-        </SvgHover>
-      </DockIcon>
-
-      <DockIcon>
-        <SvgHover>
-          <a href="https://github.com/Reynaldo003" target="_blank" rel="noreferrer">
-            <img className="h-5 w-5" src="/github.svg" loading="lazy" />
-          </a>
-        </SvgHover>
+        <SvgHover><a href="https://cvv-alpha.vercel.app/" target="_blank" rel="noreferrer"><img className="h-5 w-5" src="/url.svg" loading="lazy" /></a></SvgHover>
       </DockIcon>
       <DockIcon>
-        <SvgHover>
-          <a href="https://github.com/Francisco2000003" target="_blank" rel="noreferrer">
-            <img className="h-5 w-5" src="/github.svg" loading="lazy" />
-          </a>
-        </SvgHover>
+        <SvgHover><a href="https://github.com/Reynaldo003" target="_blank" rel="noreferrer"><img className="h-5 w-5" src="/github.svg" loading="lazy" /></a></SvgHover>
+      </DockIcon>
+      <DockIcon>
+        <SvgHover><a href="https://github.com/Francisco2000003" target="_blank" rel="noreferrer"><img className="h-5 w-5" src="/github.svg" loading="lazy" /></a></SvgHover>
       </DockIcon>
     </Dock>
+  );
+}
+
+function AuroraBackdrop() {
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10">
+      <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-amber-600/20 blur-3xl" />
+      <div className="absolute top-1/2 -right-16 h-72 w-72 -translate-y-1/2 rounded-full bg-amber-400/20 blur-3xl" />
+      <div className="absolute bottom-0 left-1/3 h-72 w-72 translate-y-1/3 rounded-full bg-amber-500/10 blur-3xl" />
+      <motion.div aria-hidden className="absolute left-0 right-0 top-32 mx-auto h-[1px] w-[90%] bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }} />
+    </div>
+  );
+}
+function AuroraRings() {
+  return (
+    <div className="absolute inset-0 [mask-image:radial-gradient(60%_60%_at_50%_50%,black,transparent)]">
+      <div className="absolute left-1/2 top-1/2 h-[1200px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber-500/10" />
+      <motion.div className="absolute left-1/2 top-1/2 h-[1200px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "conic-gradient(from 90deg at 50% 50%, rgba(245,158,11,0.15), transparent 40%, rgba(245,158,11,0.12))" }} animate={{ rotate: [0, 360] }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} />
+    </div>
+  );
+}
+import django from "/django.svg";
+function TechMarquee() {
+  const items = [
+    { icon: "/react.svg", label: "React" },
+    { icon: "/vite.svg", label: "Vite" },
+    { icon: "/tailwind-css.svg", label: "Tailwind" },
+    { icon: "/python.svg", label: "Python" },
+    { icon: "/flask.svg", label: "Flask" },
+    { icon: "/django.svg", label: "Django" },
+    { icon: "/mysql.svg", label: "MySQL" },
+    { icon: "/postgresql.svg", label: "Postgresql" },
+  ];
+  const renderIcon = (icon) => {
+    // Si es string, asumimos que es una ruta del public/
+    if (typeof icon === "string") {
+      return (
+        <img
+          src={icon}
+          alt=""
+          loading="lazy"
+          className="h-10 w-10 object-contain p-2 bg-white/60 rounded-2xl"
+        />
+      );
+    }
+    // Si es un nodo React (ej. <Globe />), lo devolvemos tal cual
+    return icon;
+  };
+  return (
+    <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-neutral-900/60">
+      <motion.div className="flex items-center gap-16 px-4 py-3" animate={{ x: [0, -600] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
+        {items.concat(items).map((it, i) => (
+          <span key={i} className="inline-flex items-center gap-2 text-xs text-white/80 ">{renderIcon(it.icon)}{it.label}</span>
+        ))}
+      </motion.div>
+    </div>
   );
 }
