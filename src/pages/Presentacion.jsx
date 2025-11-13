@@ -661,7 +661,7 @@ function TechMarquee() {
   };
   return (
     <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-neutral-900/60">
-      <motion.div className="flex items-center gap-16 px-4 py-3" animate={{ x: [0, -600] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
+      <motion.div className="flex items-center gap-16 px-4 py-3" animate={{ x: [0, -600] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }}>
         {items.concat(items).map((it, i) => (
           <span key={i} className="inline-flex items-center gap-2 text-xs text-white ">{renderIcon(it.icon)}{it.label}</span>
         ))}

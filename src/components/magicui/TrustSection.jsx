@@ -124,7 +124,7 @@ function LogoWall({ logos = [] }) {
         <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60">
             <motion.div
                 className="flex items-center gap-10 px-6 py-5"
-                animate={{ x: [0, -240] }}
+                animate={{ x: [0, -800] }}
                 transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
             >
                 {list.map((l, i) => (
@@ -169,9 +169,9 @@ function TestimonialCarousel({ items = [] }) {
         <div className="relative mt-4 rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
             <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 6 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                transition={{ duration: 0.55, ease: "easeOut" }}
             >
                 <div className="flex items-start gap-4">
                     <img
