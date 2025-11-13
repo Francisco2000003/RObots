@@ -5,7 +5,8 @@ import { Dock, DockIcon } from "@/components/magicui/dock";
 import { Particles } from "@/components/magicui/particles";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Lenis from "lenis";
-import { Home, Code2, Monitor, Wrench, Atom, Cpu, ShieldCheck, Layers3, Globe, Sparkles } from "lucide-react";
+import { Home, Code2, Monitor, Wrench, Atom, CheckCircle2, ShieldCheck, FileCheck2, Globe, Sparkles, Clock3, Lock } from "lucide-react";
+import TrustSection from "@/components/magicui/TrustSection";
 
 export default function Presentacion() {
   const year = new Date().getFullYear();
@@ -295,7 +296,7 @@ export default function Presentacion() {
                 <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />SEO técnico y performance</li>
                 <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Integración con WhatsApp/CRM</li>
               </ul>
-              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Cotizar por WhatsApp</a>
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-950">Cotizar por WhatsApp</a>
             </Card>
 
             <Card className="bg-gradient-to-b from-white/5 to-transparent">
@@ -308,7 +309,7 @@ export default function Presentacion() {
                 <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Reportes/BI (Power BI)</li>
                 <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Integración con bases de datos</li>
               </ul>
-              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Cotizar por WhatsApp</a>
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-950">Cotizar por WhatsApp</a>
             </Card>
 
             <Card className="bg-gradient-to-b from-white/5 to-transparent" highlight>
@@ -321,18 +322,17 @@ export default function Presentacion() {
                 <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />Monitoreo y analítica</li>
                 <li className="flex gap-2 items-center"><img src="/check.svg" className="h-5 w-5" loading="lazy" />SLA y respaldos</li>
               </ul>
-              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Cotizar por WhatsApp</a>
+              <a href={softwareHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-950">Cotizar por WhatsApp</a>
             </Card>
           </div>
 
-          {/* Configurador mínimo (innovador y útil) */}
           <div className="mt-8 rounded-2xl border border-white/10 bg-neutral-900/50 p-5">
             <h3 className="text-lg font-semibold flex items-center gap-2"><Code2 className="h-5 w-5" /> Define rápido tu proyecto</h3>
             <p className="mt-1 text-white/70 text-sm">Selecciona lo que necesitas y envíalo directo a WhatsApp para cotizar sin precios fijos.</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {FEATURE_OPTIONS.map((f) => (
                 <button key={f} onClick={() => togglePick(f)}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${picked.includes(f) ? "bg-amber-500 text-neutral-900 border-amber-400" : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"}`}>{f}</button>
+                  className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${picked.includes(f) ? "bg-gradient-to-r from-amber-600 to-amber-400 text-neutral-900 border-amber-400" : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"}`}>{f}</button>
               ))}
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -342,7 +342,6 @@ export default function Presentacion() {
               <a href={`mailto:hola@robots.ai?subject=Cotizaci%C3%B3n%20Software%20a%20medida&body=${encodeURIComponent("Hola, me interesa desarrollo a medida. Requerimientos: " + (picked.join(", ") || "(por definir)"))}`} className="inline-flex items-center justify-center rounded-xl border border-white/15 px-4 py-2 text-sm font-semibold text-white/90 hover:bg-white/5">Enviar por correo</a>
             </div>
 
-            {/* Marquee de stack (toque visual) */}
             <TechMarquee />
           </div>
 
@@ -351,16 +350,18 @@ export default function Presentacion() {
             <Card className="bg-neutral-900/40">
               <div className="mb-2 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80"><Atom className="h-4 w-4" /> Discovery de 30 min (gratuito)</div>
               <p className="text-sm text-white/80">Llamada para entender objetivos, riesgos y rutas de implementación. Entregamos una propuesta de alto nivel.</p>
-              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero agendar un discovery de 30 min para un proyecto de software.")}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-900 hover:bg-white/90">Agendar por WhatsApp</a>
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero agendar un discovery de 30 min para un proyecto de software.")}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-900 ">Agendar por WhatsApp</a>
             </Card>
             <Card className="bg-neutral-900/40">
               <div className="mb-2 inline-flex items-center gap-2 rounded-xl bg-white/10 px-2.5 py-1 text-xs text-white/80"><ShieldCheck className="h-4 w-4" /> Auditoría de sitio/app</div>
               <p className="text-sm text-white/80">Revisión de performance, seguridad y UX con checklist accionable para elevar resultados.</p>
-              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero una auditoría técnica de mi sitio/app.")}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90">Solicitar auditoría</a>
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero una auditoría técnica de mi sitio/app.")}`} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-950">Solicitar auditoría</a>
             </Card>
           </div>
         </div>
       </section>
+
+      <TrustSection WHATSAPP="522712128513" />
 
       {/* PRECIOS */}
       <section id="precios" className="border-t border-white/5">
@@ -482,6 +483,23 @@ export default function Presentacion() {
   );
 }
 
+function TrustBadge({ icon, title, desc }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-neutral-900/40 p-5">
+      <div className="mb-1 inline-flex items-center gap-2 text-sm text-white/80">
+        {icon}
+        {title}
+      </div>
+      <p className="text-white/70 text-sm">{desc}</p>
+      <div className="mt-3 inline-flex items-center gap-1 text-xs text-emerald-400">
+        <CheckCircle2 className="h-4 w-4" />
+        Verificable bajo solicitud
+      </div>
+    </div>
+  );
+}
+
+
 function ChatBubble({ side = "left", text }) {
   const isLeft = side === "left";
   const bubbleClass = isLeft ? "rounded-2xl rounded-tl-sm bg-white/10" : "rounded-2xl rounded-tr-sm bg-gradient-to-r from-amber-600/70 to-amber-400/70";
@@ -531,7 +549,7 @@ function PriceCard({ tier, price, period, bullets, highlight }) {
           <li key={b} className="flex items-center gap-2"><img className="h-5 w-5" src="/check.svg" alt="" loading="lazy" />{b}</li>
         ))}
       </ul>
-      <a href="#contacto" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-neutral-950 hover:bg-white/90 transition active:scale-[0.98]">Empezar</a>
+      <a href="#contacto" className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-600 to-amber-400 px-4 py-2.5 text-sm font-semibold text-neutral-950  transition active:scale-[0.98]">Empezar</a>
     </Card>
   );
 }
@@ -630,7 +648,6 @@ function TechMarquee() {
     { icon: "/postgresql.svg", label: "Postgresql" },
   ];
   const renderIcon = (icon) => {
-    // Si es string, asumimos que es una ruta del public/
     if (typeof icon === "string") {
       return (
         <img
@@ -641,7 +658,6 @@ function TechMarquee() {
         />
       );
     }
-    // Si es un nodo React (ej. <Globe />), lo devolvemos tal cual
     return icon;
   };
   return (
