@@ -635,7 +635,6 @@ function AuroraRings() {
     </div>
   );
 }
-import django from "/django.svg";
 function TechMarquee() {
   const items = [
     { icon: "/react.svg", label: "React" },
@@ -654,7 +653,7 @@ function TechMarquee() {
           src={icon}
           alt=""
           loading="lazy"
-          className="h-10 w-10 object-contain p-2 bg-white/60 rounded-2xl"
+          className="h-10 w-10 object-contain p-2 bg-white rounded-2xl"
         />
       );
     }
@@ -664,7 +663,7 @@ function TechMarquee() {
     <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-neutral-900/60">
       <motion.div className="flex items-center gap-16 px-4 py-3" animate={{ x: [0, -600] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
         {items.concat(items).map((it, i) => (
-          <span key={i} className="inline-flex items-center gap-2 text-xs text-white/80 ">{renderIcon(it.icon)}{it.label}</span>
+          <span key={i} className="inline-flex items-center gap-2 text-xs text-white ">{renderIcon(it.icon)}{it.label}</span>
         ))}
       </motion.div>
     </div>
